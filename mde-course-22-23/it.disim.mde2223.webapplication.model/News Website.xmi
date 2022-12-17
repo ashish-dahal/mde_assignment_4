@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wa:Website
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:wa="https://it.disim.mde2223/webapplication"
+    xsi:schemaLocation="https://it.disim.mde2223/webapplication WebApplication.ecore"
+    name="News Website"
+    version="1"
+    subversion="1">
+  <pages name="News Homepage">
+    <dynamicContents
+        xsi:type="wa:Index"
+        name="Breaking News"
+        entity="//@entities.0">
+      <individuals
+          name="Sports"
+          entity="//@entities.0"
+          key="1"
+          pages="//@pages.2"/>
+      <individuals
+          name="Politics"
+          entity="//@entities.0"
+          key="2"
+          pages="//@pages.1"/>
+    </dynamicContents>
+  </pages>
+  <pages name="Politics">
+    <dynamicContents
+        xsi:type="wa:Index"
+        name="News">
+      <individuals
+          name="flood"
+          entity="//@entities.1"
+          key="1"/>
+    </dynamicContents>
+  </pages>
+  <pages name="Sports"/>
+  <entities
+      name="breakingNews">
+    <features
+        xsi:type="wa:Attribute"
+        name="id"
+        type="int"
+        isPrimaryKey="true"/>
+    <features
+        xsi:type="wa:Attribute"
+        name="name"/>
+  </entities>
+  <entities
+      name="news">
+    <features
+        xsi:type="wa:Attribute"
+        name="id"
+        type="int"
+        isPrimaryKey="true"/>
+    <features
+        xsi:type="wa:Attribute"
+        name="title"/>
+    <features
+        xsi:type="wa:Attribute"
+        name="content"
+        type="text"/>
+    <features
+        xsi:type="wa:Reference"
+        name="author_id"
+        foreignKey="//@entities.2"/>
+  </entities>
+  <entities
+      name="author">
+    <features
+        xsi:type="wa:Attribute"
+        name="id"
+        type="int"
+        isPrimaryKey="true"/>
+    <features
+        xsi:type="wa:Attribute"
+        name="name"/>
+  </entities>
+  <forms name="addNews"
+      method="POST"
+      entity="//@entities.1">
+    <elements
+        name="title"
+        label="Title"
+        toolTip="Add title"
+        attribute="//@entities.1/@features.1"/>
+  </forms>
+</wa:Website>

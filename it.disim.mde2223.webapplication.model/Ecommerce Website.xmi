@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wa:Website
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:wa="https://it.disim.mde2223/webapplication"
+    xsi:schemaLocation="https://it.disim.mde2223/webapplication WebApplication.ecore"
+    name="ecommerce">
+  <pages name="homepage">
+    <dynamicContents
+        xsi:type="wa:Index"
+        name="categories"
+        entity="//@entities.0">
+      <individuals
+          name="men"
+          entity="//@entities.0"
+          key="1"
+          pages="//@pages.1"/>
+      <individuals
+          name="women"
+          entity="//@entities.0"
+          key="2"
+          pages="//@pages.2"/>
+    </dynamicContents>
+  </pages>
+  <pages name="men">
+    <dynamicContents
+        xsi:type="wa:Index"
+        name="products"
+        entity="//@entities.1">
+      <individuals
+          name="shoes"
+          entity="//@entities.1"
+          key="1"/>
+    </dynamicContents>
+  </pages>
+  <pages name="women"/>
+  <entities
+      name="category">
+    <features
+        xsi:type="wa:Attribute"
+        name="id"
+        type="int"
+        isPrimaryKey="true"/>
+    <features
+        xsi:type="wa:Attribute"
+        name="name"/>
+  </entities>
+  <entities
+      name="product">
+    <features
+        xsi:type="wa:Attribute"
+        name="id"
+        type="int"
+        isPrimaryKey="true"/>
+    <features
+        xsi:type="wa:Attribute"
+        name="name"/>
+    <features
+        xsi:type="wa:Reference"
+        name="category_id"
+        foreignKey="//@entities.0"/>
+  </entities>
+  <forms name="addProduct"
+      method="POST"
+      entity="//@entities.1">
+    <elements
+        name="inputBar"
+        label="Product Name"
+        toolTip="Enter the name of the product"
+        attribute="//@entities.1/@features.0"/>
+    <elements
+        name="dropDownMenu"
+        label="Category"
+        toolTip="Select a category"
+        attribute="//@entities.1/@features.0"/>
+  </forms>
+  <forms name="deleteProduct"
+      method="DELETE"
+      entity="//@entities.1"/>
+</wa:Website>
